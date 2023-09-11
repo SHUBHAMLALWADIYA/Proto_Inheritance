@@ -1,0 +1,76 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function Vehicle(brand,model,speed,fuelType){
+
+            this.brand=brand;
+            this.model=model;
+            this.speed=speed;
+            this.fuelType=fuelType;
+        }
+
+        Vehicle.prototype.accelerate=function(){
+            console.log(`The vehicle is Started wroom wroom`)
+        }
+
+        Vehicle.prototype.brake=function(){
+            console.log(`The vehicle is Stopped brakeee`);
+        }
+
+        Vehicle.prototype.refule=function(){
+            console.log(` fuel is Overloded`)
+        }
+
+        let myVehicle =  new Vehicle("Tesla","tesla xs",210,"Electric");
+
+
+        function Car(brand,model,speed,fuelType,numberofWheels){
+
+          Vehicle.call(this,brand,model,speed,fuelType);
+          this.numberofWheels=numberofWheels; 
+        }
+
+        Car.prototype.hank=function(){
+            console.log(" Loud Horn");
+        }
+        
+        Object.setPrototypeOf(Car.prototype,Vehicle.prototype)
+
+        let myCar1= new Car("lambo","Urus",300,"petrol",4)
+
+
+        function Plane(brand,model,speed,fuelType,numberofWheels,noOfEngines,hasLandingGears){
+
+            Car.call(this,brand,model,speed,fuelType,numberofWheels)
+            this.noOfEngines=noOfEngines;
+            this.hasLandingGears=hasLandingGears;
+        }
+        Plane.prototype.takeOff=function(){
+            console.log(`Taking off`);
+        }
+
+        Object.setPrototypeOf(Plane.prototype,Car.prototype)
+
+        myPlane1=new Plane("lambo1","urus",320,"disel",4,2,true);
+
+        console.log(myPlane1);
+
+
+        myPlane1.refule();
+        myPlane1.hank();
+        myPlane1.takeOff();
+        myPlane1.brake();
+
+
+    </script>
+</body>
+</html>
